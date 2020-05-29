@@ -6,8 +6,9 @@ from urllib.request import Request, urlopen
 from bs4 import BeautifulSoup
 import os
 from string import ascii_lowercase
+
 """
-#Trying to find button 
+#Trying to find button
 button = 'http://www.militaryfriendly.com/schools/?pageresult=2'
 soup.findAll(button)
 #nexturl = soup.findAll('div')
@@ -24,14 +25,8 @@ print(pager[0].attrs[""])
 print(pager)
 for findbutton in soup.findAll('div'):
     for finds in findbutton.findAll('button'):
-"""
-#make soup function
-def make_soup(one):
-    url = Request(one, headers={'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/35.0.1916.47 Safari/537.36'})
-    thepage = urllib.request.urlopen(url)
-    soupdata = BeautifulSoup(thepage,"html.parser", )
-    return soupdata
-"""
+
+#Save working version
 soup = make_soup("https://www.militaryfriendly.com/schools/?pageresult=1")
 
 for record in soup.findAll('tr'):
@@ -41,16 +36,24 @@ for record in soup.findAll('tr'):
     if len(tabledata) != 0:
         tabledatasaved = tabledatasaved + "\n" + tabledata[1:]
 print(tabledatasaved)
-"""
-"""
+
+#Trying to cycle through pages
 for i in range(8):
     soup = make_soup(f"http://www.militaryfriendly.com/schools/?pageresult={page_number}")
     page_number = page_number + 1
     print(make_soup)
-"""
+"
+# make soup function
+def make_soup(one):
+    url = Request(one, headers={'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/35.0.1916.47 Safari/537.36'})
+    thepage = urllib.request.urlopen(url)
+    soupdata = BeautifulSoup(thepage,"html.parser", )
+    return soupdata
+
 tabledatasaved= ""
 page_number = 1
 
+# Go through rows and columns pulling data
 for i in range(8):
     soup = make_soup(f"http://www.militaryfriendly.com/schools/?pageresult={page_number}")
     for record in soup.findAll('tr'):
