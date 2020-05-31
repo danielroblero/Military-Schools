@@ -43,9 +43,9 @@ for i in range(8):
     print(make_soup)
 """
 # make soup function
-def make_soup(one):
-    url = Request(one, headers={'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/35.0.1916.47 Safari/537.36'})
-    thepage = urllib.request.urlopen(url)
+def make_soup(URL):
+    page_request = Request(URL, headers={'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/35.0.1916.47 Safari/537.36'})
+    thepage = urllib.request.urlopen(page_request)
     soupdata = BeautifulSoup(thepage,"html.parser", )
     return soupdata
 
